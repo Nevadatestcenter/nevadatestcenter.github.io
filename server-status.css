@@ -1,0 +1,2 @@
+.server-status{position:fixed;z-index:20;left:50%;top:18px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;max-width:min(92vw,760px);padding:12px 16px;border:1px solid rgba(77,196,255,.55);border-radius:8px;background:rgba(2,8,13,.96);box-shadow:0 12px 36px rgba(0,0,0,.45);color:#eef8ff;font:600 13px/1.4 Manrope,Arial,sans-serif}.server-status strong{color:#4dc4ff;letter-spacing:.08em}.server-status span{color:#c5d3df}
+.server-status[hidden]{display:none!important}

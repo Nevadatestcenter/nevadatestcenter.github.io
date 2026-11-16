@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="noindex, nofollow">
+  <title>NTC Performance · System maintenance</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --black: #000000;
+      --panel: #050a0e;
+      --white: #f4f8fb;
+      --muted: #a5b4be;
+      --blue: #46c8ff;
+      --line: #17313f;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--black);
+    }
+
+    body {
+      margin: 0;
+      min-width: 18rem;
+      min-height: 100vh;
+      min-height: 100svh;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .language-control {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .copy-de {
+      display: none !important;
+    }
+
+    #language-de:checked ~ .page .copy-en {
+      display: none !important;
+    }
+
+    #language-de:checked ~ .page .copy-de {
+      display: revert !important;
+    }
+
+    .page {
+      width: min(100%, 90rem);
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 4.5rem);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .topbar {
+      min-height: 5.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      font-weight: 850;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .service-state {
+      margin: 0;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .topbar-tools {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .language-switch {
+      display: flex;
+      border: 1px solid var(--line);
+    }
+
+    .language-switch label {
+      min-width: 2.75rem;
+      padding: .5rem .6rem;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .7rem;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-align: center;
+    }
+
+    #language-en:checked ~ .page label[for="language-en"],
+    #language-de:checked ~ .page label[for="language-de"] {
+      background: var(--blue);
+      color: var(--black);
+    }
+
+    #language-en:focus-visible ~ .page label[for="language-en"],
+    #language-de:focus-visible ~ .page label[for="language-de"] {
+      outline: 3px solid var(--white);
+      outline-offset: 3px;
+    }
+
+    main {
+      padding: clamp(3rem, 8vw, 8rem) 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 20rem);
+      align-items: center;
+      gap: clamp(2.5rem, 5vw, 5rem);
+    }
+
+    .message {
+      min-width: 0;
+      max-width: 48rem;
+      padding-left: clamp(1.25rem, 2.5vw, 2rem);
+      border-left: .35rem solid var(--blue);
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--blue);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-family: "Arial Narrow", "Segoe UI", Arial, sans-serif;
+      font-size: clamp(3.2rem, 7.5vw, 6.25rem);
+      font-stretch: condensed;
+      font-weight: 900;
+      letter-spacing: -.055em;
+      line-height: .86;
+      text-transform: uppercase;
+    }
+
+    h1 em {
+      display: block;
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .intro {
+      max-width: 42rem;
+      margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.16rem);
+      line-height: 1.7;
+    }
+
+    .intro + .intro {
+      margin-top: .9rem;
+    }
+
+    .actions {
+      margin-top: 2rem;
+    }
+
+    .retry {
+      min-height: 3.25rem;
+      padding: .85rem 1.2rem;
+      border: 2px solid var(--blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: var(--black);
+      font-size: .82rem;
+      font-weight: 850;
+      letter-spacing: .06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .retry:hover {
+      background: var(--black);
+      color: var(--blue);
+    }
+
+    .retry:focus-visible {
+      outline: 3px solid var(--white);
+      outline-offset: 4px;
+    }
+
+    .status-panel {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      border-top: .3rem solid var(--blue);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .status-label {
+      margin: 0;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 750;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .status-code {
+      margin: .45rem 0 1.75rem;
+      color: var(--white);
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+
+    .status-row {
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: .7rem 1fr;
+      align-items: start;
+      gap: .75rem;
+    }
+
+    .status-marker {
+      width: .7rem;
+      height: .7rem;
+      margin-top: .3rem;
+      background: var(--blue);
+    }
+
+    .status-row strong {
+      display: block;
+      font-size: .96rem;
+    }
+
+    .status-row span:last-child {
+      display: block;
+      margin-top: .35rem;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+
+    .status-row + .status-row {
+      margin-top: 1.1rem;
+    }
+
+    footer {
+      min-height: 4.75rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      color: var(--muted);
+      font-size: .74rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer p:last-child {
+      color: var(--blue);
+      text-align: right;
+    }
+
+    @media (max-width: 47.5rem) {
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .topbar-tools {
+        align-items: flex-end;
+        flex-direction: column-reverse;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        align-content: center;
+        gap: 3rem;
+      }
+
+      h1 {
+        font-size: clamp(3.2rem, 17vw, 6rem);
+      }
+
+      .status-panel {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 28.75rem) {
+      .page {
+        padding: 0 1rem;
+      }
+
+      .topbar,
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .55rem;
+      }
+
+      .service-state,
+      footer p:last-child {
+        text-align: left;
+      }
+
+      .topbar-tools {
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      main {
+        padding: 2.75rem 0;
+      }
+
+      .message {
+        padding-left: 1rem;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: clamp(2.75rem, 14vw, 4rem);
+      }
+
+      .intro {
+        overflow-wrap: anywhere;
+      }
+
+      .retry {
+        width: 100%;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .message,
+      .retry,
+      .status-panel {
+        border-color: CanvasText;
+      }
+
+      .status-marker {
+        background: CanvasText;
+      }
+    }
+  </style>
+</head>
+<body>
+  <input class="language-control" type="radio" name="maintenance-language" id="language-en" checked>
+  <input class="language-control" type="radio" name="maintenance-language" id="language-de">
+  <div class="page">
+    <header class="topbar">
+      <p class="brand"><span>NTC</span> Performance</p>
+      <div class="topbar-tools">
+        <p class="service-state"><span class="copy-en">System status · Maintenance active</span><span class="copy-de" lang="de-DE">Systemstatus · Wartung aktiv</span></p>
+        <div class="language-switch" role="group" aria-label="Language / Sprache">
+          <label for="language-en" data-language="en-US">EN</label>
+          <label for="language-de" data-language="de-DE">DE</label>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="message" aria-labelledby="maintenance-title">
+        <p class="eyebrow">NTC-MAINTENANCE / 503</p>
+        <h1 id="maintenance-title"><span class="copy-en">System</span><span class="copy-de" lang="de-DE">System-</span><em><span class="copy-en">maintenance.</span><span class="copy-de" lang="de-DE">wartung.</span></em></h1>
+        <p class="intro"><span class="copy-en">NTC Performance is currently undergoing scheduled infrastructure and data center maintenance. During this time, access to the platform and its services is temporarily unavailable.</span><span class="copy-de" lang="de-DE">NTC Performance führt derzeit geplante Infrastruktur- und Rechenzentrumsarbeiten durch. Während dieser Zeit sind die Plattform und ihre Dienste vorübergehend nicht erreichbar.</span></p>
+        <p class="intro"><span class="copy-en">All accounts, vehicle listings, images, and saved data remain secure and will be fully available once maintenance is complete.</span><span class="copy-de" lang="de-DE">Alle Konten, Fahrzeuganzeigen, Bilder und gespeicherten Daten bleiben sicher und stehen nach Abschluss der Wartungsarbeiten wieder vollständig zur Verfügung.</span></p>
+        <p class="intro"><span class="copy-en">Due to the scope of the work, maintenance is expected to continue for several days. We are working to restore all services as soon as possible. Thank you for your patience.</span><span class="copy-de" lang="de-DE">Aufgrund des Umfangs der Arbeiten wird die Wartung voraussichtlich mehrere Tage dauern. Wir arbeiten daran, alle Dienste schnellstmöglich wiederherzustellen. Vielen Dank für deine Geduld.</span></p>
+        <div class="actions">
+          <a class="retry" href="/"><span class="copy-en">Check status&nbsp;→</span><span class="copy-de" lang="de-DE">Status prüfen&nbsp;→</span></a>
+        </div>
+      </section>
+
+      <aside class="status-panel" aria-labelledby="status-title">
+        <p class="status-label"><span class="copy-en">Service status</span><span class="copy-de" lang="de-DE">Dienststatus</span></p>
+        <p class="status-code" aria-label="HTTP status 503">503</p>
+        <div class="status-row" role="status">
+          <span class="status-marker" aria-hidden="true"></span>
+          <div>
+            <strong id="status-title"><span class="copy-en">PLANNED MAINTENANCE</span><span class="copy-de" lang="de-DE">GEPLANTE WARTUNG</span></strong>
+            <span><span class="copy-en">Platform services are temporarily unavailable.</span><span class="copy-de" lang="de-DE">Die Plattformdienste sind vorübergehend nicht erreichbar.</span></span>
+          </div>
+        </div>
+        <div class="status-row">
+          <span class="status-marker" aria-hidden="true"></span>
+          <div>
+            <strong><span class="copy-en">DATA REMAINS SECURE</span><span class="copy-de" lang="de-DE">DATEN BLEIBEN SICHER</span></strong>
+            <span><span class="copy-en">Existing platform data is preserved.</span><span class="copy-de" lang="de-DE">Alle vorhandenen Plattformdaten bleiben erhalten.</span></span>
+          </div>
+        </div>
+        <div class="status-row">
+          <span class="status-marker" aria-hidden="true"></span>
+          <div>
+            <strong><span class="copy-en">ESTIMATED DURATION</span><span class="copy-de" lang="de-DE">VORAUSSICHTLICHE DAUER</span></strong>
+            <span><span class="copy-en">Several days · No exact reopening date yet.</span><span class="copy-de" lang="de-DE">Mehrere Tage · Noch kein genaues Enddatum.</span></span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <p>© 2026 NTC Performance</p>
+      <p>NTC-MAINT-503 · Built for enthusiasts</p>
+    </footer>
+  </div>
+</body>
+</html>

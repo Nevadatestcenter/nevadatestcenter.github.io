@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en-US" class="maintenance-checking">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>NTC Performance | Vehicles</title>
+    <meta name="description" content="NTC Performance – your marketplace for selected vehicles."/>
+    <meta name="theme-color" content="#02070b"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261020"/>
+    <link rel="shortcut icon" href="/favicon.svg?v=20261020"/>
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20261020"/>
+    <link rel="manifest" href="/site.webmanifest?v=20261020"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles.css"/>
+    <link rel="stylesheet" href="/vehicle.css"/>
+    <link rel="stylesheet" href="/server-status.css"/>
+    <link rel="stylesheet" href="/maintenance-gate.css"/>
+    <script src="/i18n.js"></script>
+    <script src="/config.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" data-route href="/#home"><span>NTC</span> PERFORMANCE</a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+        <a data-route href="/#home" class="active" data-i18n="nav.home">Home</a>
+        <a data-route href="/fahrzeuge" data-i18n="nav.vehicles">Vehicles</a>
+        <a data-route href="/#workshop" data-i18n="nav.workshop">Workshop</a>
+        <a data-route href="/#about" data-i18n="nav.about">About NTC Performance</a>
+        <div class="mobile-account-nav" id="mobile-account-nav">
+        </div>
+      </nav>
+      <div class="account-area" id="account-area">
+      </div>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-controls="main-nav" aria-expanded="false" data-i18n-aria-label="nav.openMenu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <button class="btn btn-primary create-trigger" data-i18n="nav.create">+ List a vehicle</button>
+    </header>
+    <div class="server-status" id="server-status" role="alert" hidden><strong data-i18n="server.offline.title">SERVER UNAVAILABLE</strong><span data-i18n="server.offline.text">The NTC server is not responding right now. Please try again later.</span>
+    </div>
+    <main id="home">
+      <section class="hero">
+        <div class="hero-image">
+        </div>
+        <div class="hero-overlay">
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow" data-i18n="home.marketplace">NTC PERFORMANCE · VEHICLE MARKETPLACE</p>
+          <h1><span data-i18n="home.heroLead">Find your</span><br/><em data-i18n="home.heroAccent">next vehicle.</em></h1>
+          <p class="hero-copy" data-i18n="home.heroCopy">Selected vehicles for people who want more than simply getting from A to B.</p>
+          <form class="search-bar" id="search-form"><span aria-hidden="true">⌕</span><input id="search-input" type="search" data-i18n-aria-label="home.searchAria" aria-label="Search vehicles" data-i18n-placeholder="home.searchPlaceholder" placeholder="Search by make, model, or location ..."/>
+          <button data-i18n="common.search">Search</button>
+        </form>
+        <div class="hero-actions">
+          <a class="btn btn-primary" data-route href="/fahrzeuge" data-i18n="home.discover">Discover vehicles</a>
+          <button class="text-button create-trigger"><span data-i18n="home.create">List a vehicle</span> <span>→</span></button>
+        </div>
+        <p class="community-count"><strong id="account-count">0</strong> <span id="account-count-label" data-i18n="home.members.other">members at NTC Performance</span></p>
+      </div>
+      <div class="hero-stat"><strong>01</strong><span data-i18n="home.stat">Your next vehicle is waiting.</span>
+      </div>
+    </section>
+    <section class="content-section listings-section" id="vehicles">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="home.exchange">VEHICLE MARKETPLACE</p>
+          <h2><span data-i18n="home.current">Current</span> <em data-i18n="home.vehicles">vehicles</em></h2>
+        </div>
+        <span id="listing-count"></span>
+      </div>
+      <div id="listing-grid" class="listing-grid">
+      </div>
+    </section>
+    <section class="workshop" id="workshop">
+      <div class="workshop-photo">
+      </div>
+      <div class="workshop-copy">
+        <p class="eyebrow" data-i18n="home.workshop">NTC PERFORMANCE WORKSHOP</p>
+        <h2><span data-i18n="home.moreThan">More than just</span><br/><em data-i18n="home.workshopVehicles">vehicles.</em></h2>
+        <p data-i18n="home.workshopCopy">For your next project, we bring together a passion for vehicles, expertise, and a strong network.</p>
+        <a class="btn btn-outline" href="mailto:werkstatt@ntc-performance.de" data-i18n="home.contact">Contact NTC Performance</a>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <p class="eyebrow" data-i18n="home.about">ABOUT NTC PERFORMANCE</p>
+      <h2><span data-i18n="home.aboutLead">Built for the</span><br/><em data-i18n="home.aboutAccent">automotive culture.</em></h2>
+      <p data-i18n="home.aboutCopy">NTC Performance is your place for distinctive vehicles and genuine automotive culture.</p>
+    </section>
+  </main>
+  <main id="route-view" class="route-view" hidden aria-live="polite">
+  </main>
+  <footer>
+    <a class="brand" data-route href="/#home"><span>NTC</span> PERFORMANCE</a>
+    <p data-i18n="footer.copy">© 2026 NTC Performance. Built for enthusiasts.</p>
+  </footer>
+  <div class="modal" id="account-modal">
+    <div class="modal-backdrop" data-close>
+    </div>
+    <section class="modal-panel account-panel">
+      <button class="close-modal" data-close>×</button>
+      <p class="eyebrow" data-i18n="auth.account">NTC PERFORMANCE ACCOUNT</p>
+      <h2><span data-i18n="auth.headingLead">Your</span> <em data-i18n="auth.headingAccent">account.</em></h2>
+      <p class="auth-required" data-i18n="auth.required">You must be logged in to use this feature.</p>
+      <div class="account-tabs">
+        <button class="account-tab active" data-tab="login" data-i18n="auth.login">Log in</button>
+        <button class="account-tab" data-tab="register" data-i18n="auth.register">Register</button>
+      </div>
+      <form id="login-form" class="account-form active">
+        <label><span data-i18n="auth.email">Email address</span><input name="email" type="email" required/></label>
+        <label><span data-i18n="auth.password">Password</span><input name="password" type="password" minlength="6" required/></label>
+        <button class="btn btn-primary"><span data-i18n="auth.login">Log in</span> →</button>
+      </form>
+      <form id="register-form" class="account-form">
+        <label><span data-i18n="auth.name">Name</span><input name="name" maxlength="40" required/></label>
+        <label><span data-i18n="auth.email">Email address</span><input name="email" type="email" required/></label>
+        <label><span data-i18n="auth.password">Password</span><input name="password" type="password" minlength="8" required/></label>
+        <label id="invite-code-field" hidden><span data-i18n="auth.invite">Invitation code</span><input name="invite_code" type="password" autocomplete="off" maxlength="100" data-i18n-placeholder="auth.invitePlaceholder" placeholder="Code from NTC Performance"/></label>
+        <button class="btn btn-primary" data-i18n="auth.create">Create account →</button>
+      </form>
+    </section>
+  </div>
+  <div class="modal" id="create-modal">
+    <div class="modal-backdrop" data-close>
+    </div>
+    <section class="modal-panel create-panel">
+      <button class="close-modal" data-close>×</button>
+      <p class="eyebrow" data-i18n="create.eyebrow">NTC PERFORMANCE · LIST A VEHICLE</p>
+      <h2><span data-i18n="create.headingLead">Create a</span> <em data-i18n="create.headingAccent">vehicle.</em></h2>
+      <form id="create-form">
+        <div class="upload-zone"><input id="images" name="images[]" type="file" accept="image/*" multiple/><span class="upload-icon">↑</span><strong class="upload-required"><span data-i18n="create.images">Add vehicle images</span><b class="required-marker" aria-hidden="true">*</b></strong>
+          <small id="image-count">0 / 50 images · Max. 5 MB per image</small>
+          <div class="file-preview" id="file-preview">
+          </div>
+        </div>
+        <div class="form-grid">
+          <label><span class="field-label"><span data-i18n="create.make">Make</span><b class="required-marker" aria-hidden="true">*</b></span><input name="brand" required/></label>
+          <label><span class="field-label"><span data-i18n="create.model">Model</span><b class="required-marker" aria-hidden="true">*</b></span><input name="model" required/></label>
+          <label><span class="field-label"><span data-i18n="create.year">Model year</span><b class="required-marker" aria-hidden="true">*</b></span><input name="year" type="number" min="1900" max="2100" required/></label>
+          <label><span class="field-label"><span id="create-price-label">Price (USD)</span><b class="required-marker" aria-hidden="true">*</b></span><input name="price" type="number" min="0" required/><input id="create-price-currency" name="price_currency" type="hidden" value="USD"/></label>
+          <label><span class="field-label"><span data-i18n="create.mileage">Mileage</span><b class="required-marker" aria-hidden="true">*</b></span><input name="mileage" type="number" min="0" required/></label>
+          <label><span class="field-label"><span data-i18n="create.power">HP / Power</span><b class="required-marker" aria-hidden="true">*</b></span><input name="horsepower" type="number" min="1" required/></label>
+          <label><span class="field-label"><span data-i18n="create.fuel">Fuel</span><b class="required-marker" aria-hidden="true">*</b></span>
+          <select name="fuel" required>
+            <option value="petrol" data-i18n="value.petrol">Petrol</option>
+            <option value="diesel" data-i18n="value.diesel">Diesel</option>
+            <option value="hybrid" data-i18n="value.hybrid">Hybrid</option>
+            <option value="electric" data-i18n="value.electric">Electric</option>
+          </select>
+          </label>
+          <label><span class="field-label"><span data-i18n="create.transmission">Transmission</span><b class="required-marker" aria-hidden="true">*</b></span>
+          <select name="transmission" required>
+            <option value="automatic" data-i18n="value.automatic">Automatic</option>
+            <option value="manual" data-i18n="value.manual">Manual</option>
+          </select>
+          </label>
+          <label><span class="field-label"><span data-i18n="create.drive">Drivetrain</span><b class="required-marker" aria-hidden="true">*</b></span>
+          <select name="drive" required>
+            <option value="rwd" data-i18n="value.rwd">Rear-wheel drive</option>
+            <option value="awd" data-i18n="value.awd">All-wheel drive</option>
+            <option value="fwd" data-i18n="value.fwd">Front-wheel drive</option>
+          </select>
+          </label>
+          <label><span class="field-label"><span data-i18n="create.color">Color</span><b class="required-marker" aria-hidden="true">*</b></span><input name="color" required/></label>
+          <label><span class="field-label"><span data-i18n="create.location">Location</span><b class="required-marker" aria-hidden="true">*</b></span><input name="location" required/></label>
+        </div>
+        <div id="create-optional-fields">
+        </div>
+        <label><span class="field-label"><span data-i18n="create.description">Description</span><b class="required-marker" aria-hidden="true">*</b></span><textarea name="description" rows="5" maxlength="1500" required></textarea></label>
+        <button class="btn btn-primary submit-listing" data-i18n="create.publish">Publish vehicle →</button>
+      </form>
+    </section>
+  </div>
+  <div class="modal" id="rating-modal">
+    <div class="modal-backdrop" data-close>
+    </div>
+    <section class="modal-panel rating-panel">
+      <button class="close-modal" data-close data-i18n-aria-label="common.close" aria-label="Close">×</button>
+      <p class="eyebrow">NTC PERFORMANCE</p>
+      <h2><span data-i18n="rating.headingLead">Submit a</span> <em data-i18n="rating.headingAccent">rating.</em></h2>
+      <p class="rating-help" data-i18n="rating.instructions">Choose from one to five stars.</p>
+      <div class="rating-picker" id="rating-picker" role="radiogroup" data-i18n-aria-label="rating.aria" aria-label="Vehicle rating">
+      </div>
+      <p class="rating-selection" id="rating-selection" aria-live="polite"></p>
+      <label class="rating-comment-label" for="rating-comment"><span data-i18n="rating.commentLabel">Comment (optional)</span></label>
+      <textarea id="rating-comment" maxlength="500" data-i18n-placeholder="rating.commentPlaceholder" placeholder="Your comment (optional, maximum 500 characters)"></textarea>
+      <small id="rating-counter">0 / 500</small>
+      <button class="btn btn-primary" id="save-rating" data-i18n="rating.save">Save rating →</button>
+    </section>
+  </div>
+  <div class="modal rating-conversation-modal" id="rating-conversation-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close>
+    </div>
+    <section class="modal-panel rating-conversation-panel" tabindex="-1">
+      <button class="close-modal" data-close data-i18n-aria-label="common.close" aria-label="Close">×</button>
+      <div id="rating-conversation-content">
+      </div>
+    </section>
+  </div>
+  <div class="modal" id="success-modal">
+    <div class="modal-backdrop" data-close>
+    </div>
+    <section class="modal-panel success-panel">
+      <div class="success-stars">★★★★★</div>
+      <h2><span data-i18n="rating.savedLead">Rating</span> <em data-i18n="rating.savedAccent">saved!</em></h2>
+      <p id="success-text"></p>
+      <button class="btn btn-primary" data-close data-i18n="common.close">Close</button>
+    </section>
+  </div>
+  <div class="modal image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" data-i18n-aria-label="gallery.dialog" aria-label="Vehicle image in fullscreen">
+    <div class="modal-backdrop" data-close>
+    </div>
+    <section class="lightbox-panel">
+      <button class="lightbox-close" data-close data-i18n-aria-label="gallery.close" aria-label="Close fullscreen">×</button>
+      <button class="lightbox-nav lightbox-prev" data-lightbox-prev data-i18n-aria-label="gallery.previous" aria-label="Previous image">‹</button>
+      <img id="lightbox-image" alt="Vehicle image in fullscreen"/>
+      <button class="lightbox-nav lightbox-next" data-lightbox-next data-i18n-aria-label="gallery.next" aria-label="Next image">›</button>
+      <div class="lightbox-caption" id="lightbox-caption">
+      </div>
+    </section>
+  </div>
+  <div class="action-dialog" id="action-dialog" aria-hidden="true">
+    <div class="action-dialog-backdrop" data-dialog-cancel>
+    </div>
+    <section class="action-dialog-panel" role="alertdialog" aria-modal="true" aria-labelledby="action-dialog-title" aria-describedby="action-dialog-message action-dialog-detail" aria-busy="false" tabindex="-1">
+      <div class="action-dialog-mark" aria-hidden="true">!</div>
+      <p class="action-dialog-eyebrow" id="action-dialog-eyebrow">NTC PERFORMANCE</p>
+      <h2 id="action-dialog-title"></h2>
+      <p class="action-dialog-message" id="action-dialog-message"></p>
+      <p class="action-dialog-detail" id="action-dialog-detail"></p>
+      <p class="action-dialog-error" id="action-dialog-error" role="alert" hidden></p>
+      <div class="action-dialog-actions">
+        <button class="btn btn-outline" type="button" id="action-dialog-cancel" data-dialog-cancel></button>
+        <button class="btn action-dialog-confirm" type="button" id="action-dialog-confirm"></button>
+      </div>
+    </section>
+  </div>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false">
+  </div>
+  <script src="/maintenance-gate.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.maintenance-checking body { visibility: hidden; }
+#maintenance-gate[hidden] { display: none; }
+#maintenance-gate {
+  position: fixed; inset: 0; z-index: 100000; display: grid; place-items: center;
+  padding: 24px; background: #02070b; color: #f6f6f2; text-align: center;
+  font-family: Manrope, Arial, sans-serif;
+}
+.maintenance-gate-card { max-width: 620px; }
+.maintenance-gate-card strong { display: block; color: #b6ff45; font-size: 12px; letter-spacing: .16em; }
+.maintenance-gate-card h1 { margin: 16px 0; font: 800 clamp(36px, 7vw, 72px) 'Barlow Condensed', Arial, sans-serif; text-transform: uppercase; }
+.maintenance-gate-card p { color: #c5c9c7; line-height: 1.6; }
+.maintenance-gate-card button { margin-top: 22px; padding: 12px 20px; border: 1px solid #b6ff45; background: transparent; color: #b6ff45; font: inherit; font-weight: 800; cursor: pointer; }
